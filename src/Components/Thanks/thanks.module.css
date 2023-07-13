@@ -1,0 +1,35 @@
+.top{
+    background-color: #9BCDD2 
+    ;
+}
+
+.thanks{
+    margin: 200px auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF8551 ;
+    -webkit-box-shadow: 0 0 20px 5px greenyellow;
+    -moz-box-shadow: 0 0 20px 5px green;
+    box-shadow: 0 0 20px 5px grey;
+    height: 350px;
+    width: 700px;
+}
+
+.thanks button{
+    margin-top: 20px;
+    padding: 10px 40px
+}
+
+.thanks h2{
+    font-style: oblique;
+    font-size: 40px;
+}
+
+.icon{
+    width: 90px;
+    height:100px;
+    margin-bottom: 5px; 
+}

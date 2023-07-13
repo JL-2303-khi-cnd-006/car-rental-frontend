@@ -1,0 +1,18 @@
+.nav{
+    background-color:#F8FDCF;
+    display: flex;
+    align-items: center;
+}
+
+.nav img{
+    height:150px;
+}
+
+.nav h2{
+    color: #606C5D;
+    text-indent: 50px;
+    margin-top: 70px;
+    font-size: 50px;
+    font-style: oblique;
+    /* font-family: "Lucida Console", "Courier New", monospace; */
+}

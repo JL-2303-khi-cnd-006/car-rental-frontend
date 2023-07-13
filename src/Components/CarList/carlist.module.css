@@ -1,0 +1,43 @@
+.carList{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFEBEB
+}
+.card{
+    background-color: #C5DFF8;
+    width: 1000px;
+    margin: 20px;
+    box-shadow: 5px 5px 10px #888888;
+    align-items: center; 
+    display: flex;
+    padding: 5px 15px;
+    
+}
+
+.card img {
+    width: 320px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    margin-left: 10px ;
+}
+
+.hotelcard{
+    display: flex;
+    /* flex-direction: column; */
+}
+
+
+.info{
+    text-align: left;
+    padding-left: 15px;
+}
+
+.card button {
+    color: black;
+    border-radius: 2px solid black;
+    box-shadow: 2px 5px #888888;
+    background-color: #A0BFE0;
+}

@@ -1,0 +1,74 @@
+.details{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 500px;
+}
+
+.img{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 450px;
+    /* height: 220px; */
+}
+
+.info{
+    padding: 20px;
+}
+
+.fullFormPage{
+    background-color: #F8FDCF;
+}
+
+.form{
+    background-color: #e1acac;
+    margin: 0 150px;
+    padding: 50px;
+    box-shadow: -20px 20px 20px 5px grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.detailForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 700px; */
+}
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between ;
+
+}
+
+.amount{
+    margin-left: 22px;
+}
+
+.price{
+    margin-left: 10px;
+}
+
+.price input{
+    width: 300px;
+    padding: 5px 10px;
+    margin: 7px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.detailForm input {
+    width: 300px;
+    padding: 10px 20px;
+    margin: 7px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
