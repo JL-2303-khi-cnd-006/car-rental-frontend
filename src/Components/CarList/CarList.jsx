@@ -25,8 +25,9 @@ export const CarList = () => {
     <div className={styles.carList} >
         {loading ?  "loading..."
         :
-        getCar.filter((item)=> (item.id !== 152)).map((item, index) => (
-            <div className={styles.card} key={index}>
+        getCar.map((item, index) => {
+          if(index < 5){
+            return <div className={styles.card} key={item.id}>
               <img src={item.image} alt='' />
 
               <div className={styles.info}>
@@ -41,8 +42,8 @@ export const CarList = () => {
               </div>
 
         </div>
-
-        ))
+}
+})
     }
 
     </div>

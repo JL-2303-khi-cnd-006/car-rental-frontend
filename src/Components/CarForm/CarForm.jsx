@@ -39,29 +39,39 @@ export const CarForm = () => {
         
       },[id])
 
-      const handleTotalAmount=()=>{
-          if(pickDate && returnDate && checkBox === true){
-            const pick = new Date(pickDate);
-            const retn = new Date(returnDate);
-            const date = retn.getTime() - pick.getTime();
-            const totalNights = Math.ceil(date / (1000 * 3600 * 24));
-            const price = totalNights*(getCarById.rental_fee_per_day);
-            const finalPrice = price + (totalNights*15000);
-            setTotalAmount(finalPrice); 
-            return finalPrice;
-          } 
-          else {
-          
-            const pick = new Date(pickDate);
-            const retn = new Date(returnDate);
-            const date = retn.getTime() - pick.getTime();
-            const totalNights = Math.ceil(date / (1000 * 3600 * 24));
-            const price = totalNights*(getCarById.rental_fee_per_day);
-            setTotalAmount(price);
-            return price;
+        function handleAmount(){
+            if(pickDate && returnDate && checkBox === true){
+              const pick = new Date(pickDate);
+              const retn = new Date(returnDate);
+              const date = retn.getTime() - pick.getTime();
+              const totalNights = (Math.ceil(date / (1000 * 3600 * 24)))+1;
+              const price = totalNights*(getCarById.rental_fee_per_day);
+              const finalPrice = price + (totalNights*15000);
+              setTotalAmount(finalPrice); 
+              return finalPrice;
+            } 
+            else if(pickDate && returnDate && checkBox === false){
+            
+              const pick = new Date(pickDate);
+              const retn = new Date(returnDate);
+              const date = retn.getTime() - pick.getTime();
+              const totalNights = (Math.ceil(date / (1000 * 3600 * 24)))+1;
+              const price = totalNights*(getCarById.rental_fee_per_day);
+              setTotalAmount(price);
+              return price;
+          } else {
+            return 0;
+          }
         }
-      }
-      
+        
+        const handleDamageWaiver = () => {
+          const pick = new Date(pickDate);
+          const retn = new Date(returnDate);
+          const date = retn.getTime() - pick.getTime();
+          const totalNights = (Math.ceil(date / (1000 * 3600 * 24)))+1;
+          return totalNights*15000;
+    }
+
       const handleChange = () => {
         const data = {
           driverName: driverName,
@@ -77,11 +87,10 @@ export const CarForm = () => {
         navigate('/')
       }
       
-      const handleCheckout = (e) => {
-      
-        e.preventDefault();
+      const handleCheckout = () => {
 
         if(checkBox === false){
+
         let data = {
           carId: getCarById.id,
           driverName: driverName,
@@ -91,7 +100,7 @@ export const CarForm = () => {
           licenseNumber: licenseNumber,
           pickDate: pickDate,
           returnDate: returnDate,
-          totalPrice: handleTotalAmount()
+          totalPrice: totalAmount
         }
 
         fetch("http://localhost:8081/rentalForm/add",{
@@ -118,7 +127,7 @@ export const CarForm = () => {
         licenseNumber: licenseNumber,
         pickDate: pickDate,
         returnDate: returnDate,
-        totalPrice: handleTotalAmount()
+        totalPrice: totalAmount
       }
 
       fetch("http://localhost:8081/rentalForm/add",{
@@ -134,6 +143,32 @@ export const CarForm = () => {
         .catch(error => console.log('posting error', error))
         localStorage.clear();
     }
+
+    let data = {
+      carId: 152,
+      driverName: driverName,
+      email: email,
+      address: address,
+      phoneNumber: phoneNumber,
+      licenseNumber: licenseNumber,
+      pickDate: pickDate,
+      returnDate: returnDate,
+      totalPrice: handleDamageWaiver()
+    }
+
+    fetch("http://localhost:8081/rentalForm/add",{
+      method: "POST",
+      headers:{
+        'Content-Type':'application/json'
+    },
+    body: JSON.stringify(data)
+      }).then(res => {
+        console.log(res)
+      })
+    
+      .catch(error => console.log('posting error', error))
+      localStorage.clear();
+
     navigate('/thanks')
   } 
     return (
@@ -149,7 +184,9 @@ export const CarForm = () => {
             
             </div>
             <div className={styles.amount}>
+            
             <div class="form-check">
+             
               <input 
               class="form-check-input" 
               type="checkbox" 
@@ -162,12 +199,24 @@ export const CarForm = () => {
                 Damage Waiver of Rs 15,000 is required.
               </label>
             </div>
+
             <div className={styles.price}>
             <label> Total Amount: Rs </label> 
-            <input type="text" value={totalAmount} />
+            <input type="text" value={totalAmount} required />
             </div>
+
+            <button 
+            type="button" 
+            class="btn btn-outline-dark" 
+            data-mdb-ripple-color="dark"
+            onClick={handleAmount}>
+              Calculate 
+            </button>
           </div>
           </div>
+
+
+
         <form onSubmit={handleCheckout} >
         <div className={styles.detailForm}>
         <h2 className={styles.detailTitle}>Fill the Form for booking</h2>
@@ -239,6 +288,8 @@ export const CarForm = () => {
             <br/>
             </div>
             <div className={styles.btns}>
+
+
             <button 
             type="" 
             class="btn btn-outline-dark" 
@@ -246,6 +297,8 @@ export const CarForm = () => {
             onClick={handleChange}>
               Change Car
             </button>
+
+
             <button 
             type="submit" 
             class="btn btn-outline-dark" 

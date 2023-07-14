@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './navbar.module.css'
 import logo from '../../logo.png'
+
+
 export const Navbar = () => {
   return (
     <div className={styles.nav}>
